@@ -57,7 +57,7 @@ public class ProtolintExecutor {
         try {
             String line = error.readLine();
             while (line != null) {
-                LOGGER.info("Protolint raw line: " + line);
+                LOGGER.debug("Protolint raw line: " + line);
                 ProtolintWarning warning = parseWarning(line);
                 if (warning != null) {
                     warnings.add(warning);
@@ -66,7 +66,7 @@ public class ProtolintExecutor {
             }
 
             process.waitFor();
-            LOGGER.info("Process exit code: " + process.exitValue());
+            LOGGER.debug("Process exit code: " + process.exitValue());
         } catch (IOException | InterruptedException ex) {
             LOGGER.error("There was a problem while trying to read the protolint process output.", ex);
             throw new ProtolintPluginException(ex);
@@ -79,12 +79,12 @@ public class ProtolintExecutor {
         // e.g. [/path/to/cloudEndpoints.proto:121:13] Field name "Disabled" must be LowerSnakeCase
         final String[] parts = raw.split("] ");
         if (parts.length < 2) {
-            LOGGER.info("Not found one ]. " + raw);
+            LOGGER.debug("Not found one ]. " + raw);
             return null;
         }
         final String[] meta = parts[0].split(":");
         if (meta.length < 3) {
-            LOGGER.info("Not found two :. " + raw);
+            LOGGER.debug("Not found two :. " + raw);
             return null;
         }
 
@@ -94,7 +94,7 @@ public class ProtolintExecutor {
             final String reason = parts[1];
             return new ProtolintWarning(line, column, reason);
         } catch (NumberFormatException ex) {
-            LOGGER.info("This is not warning output.");
+            LOGGER.debug("This is not warning output.");
             return null;
         }
     }

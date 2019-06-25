@@ -25,25 +25,27 @@ public class ProtolintAnnotator extends ExternalAnnotator<PsiFile, List<Protolin
     @Nullable
     @Override
     public PsiFile collectInformation(@NotNull PsiFile file) {
+        LOGGER.debug("Called collectInformation");
         return file;
     }
 
     @Nullable
     @Override
     public PsiFile collectInformation(@NotNull PsiFile file, @NotNull Editor editor, boolean hasErrors) {
+        LOGGER.debug("Called collectInformation2");
         return super.collectInformation(file, editor, hasErrors);
     }
 
     @Nullable
     @Override
     public List<ProtolintWarning> doAnnotate(PsiFile file) {
-        LOGGER.info("Called doAnnotate");
+        LOGGER.debug("Called doAnnotate");
         return ProtolintExecutor.execute(file);
     }
 
     @Override
     public void apply(@NotNull PsiFile file, List<ProtolintWarning> warnings, @NotNull AnnotationHolder holder) {
-        LOGGER.info("Called apply");
+        LOGGER.debug("Called apply");
         Document document = PsiDocumentManager.getInstance(file.getProject()).getDocument(file);
         if (document == null) {
             LOGGER.warn("Not Found document");
@@ -55,7 +57,7 @@ public class ProtolintAnnotator extends ExternalAnnotator<PsiFile, List<Protolin
             int startOffset = StringUtil.lineColToOffset(file.getText(), line, warning.getColumn());
             TextRange range = new TextRange(startOffset, lineEndOffset);
             holder.createWarningAnnotation(range, warning.getReason());
-            LOGGER.info("Create annotation");
+            LOGGER.info("Create an annotation");
         });
     }
 }
