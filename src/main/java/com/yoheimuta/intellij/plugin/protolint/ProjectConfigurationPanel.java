@@ -44,7 +44,7 @@ public class ProjectConfigurationPanel implements SearchableConfigurable {
     @Nls(capitalization = Nls.Capitalization.Title)
     @Override
     public String getDisplayName() {
-        return "Protocol Buffer Lint";
+        return "Protocol Buffer Linter";
     }
 
     @Nullable

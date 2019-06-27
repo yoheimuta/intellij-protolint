@@ -1,13 +1,17 @@
 <idea-plugin>
     <id>com.yoheimuta.intellij.plugin.protolint</id>
-    <name>ProtoLint</name>
-    <version>1.0.0</version>
+    <name>Protocol Buffer Linter</name>
     <vendor email="yoheimuta@gmail.com" url="https://github.com/yoheimuta">yoheimuta</vendor>
 
     <description><![CDATA[
-      ProtoLint plugin for all products based on IntelliJ Platform (IntelliJ IDEA, GoLand, RubyMine, WebStorm, PhpStorm, PyCharm, AppCode, etc.)<br><br>
+      <a href="https://github.com/yoheimuta/protolint/">Protolint</a> plugin for all products based on IntelliJ Platform (IntelliJ IDEA, GoLand, RubyMine, WebStorm, PhpStorm, PyCharm, AppCode, etc.)<br><br>
 
-      Configure the path to the <code>protolint</code> executable and config through Preferences -> Tools -> Protocol Buffer Lint
+      Configure the path to the <code>protolint</code> executable and its config through Preferences -> Tools -> Protocol Buffer Linter
+
+      <br/>
+      <br/>
+      <a href="https://github.com/yoheimuta/intellij-protolint">Documentation</a>
+      | <a href="https://github.com/yoheimuta/intellij-protolint/issues">Issue tracker</a>
     ]]></description>
 
     <idea-version since-build="183"/>
