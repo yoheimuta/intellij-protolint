@@ -1,0 +1,10 @@
+language: java
+install: true
+dist: trusty
+
+jdk:
+- oraclejdk8
+- openjdk8
+
+script:
+  - ./gradlew clean build
