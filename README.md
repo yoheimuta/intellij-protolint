@@ -1,6 +1,6 @@
 # Protobuf Lint Support for JetBrains IDEs
 
-[Protocol Buffer Linter Plugin]() for IntelliJ IDEA & other JetBrains products.
+[Protocol Buffer Linter Plugin](https://plugins.jetbrains.com/plugin/12641-protocol-buffer-linter) for IntelliJ IDEA & other JetBrains products.
 
 The latest plugin release is compatible with IntelliJ IDEA 2018.3.
 Other JetBrains IDEs of the same or higher version should be supported as well.
