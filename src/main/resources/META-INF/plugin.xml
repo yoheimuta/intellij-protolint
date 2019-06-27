@@ -5,15 +5,19 @@
     <vendor email="yoheimuta@gmail.com" url="https://github.com/yoheimuta">yoheimuta</vendor>
 
     <description><![CDATA[
-      ProtoLint plugin for all products based on IntelliJ Platform (IntelliJ IDEA, RubyMine, WebStorm, PhpStorm, PyCharm, AppCode, etc.)<br><br>
+      ProtoLint plugin for all products based on IntelliJ Platform (IntelliJ IDEA, GoLand, RubyMine, WebStorm, PhpStorm, PyCharm, AppCode, etc.)<br><br>
 
-      Configure the path to the <code>protolint</code> executable through Preferences -> Tools -> ProtoLint
+      Configure the path to the <code>protolint</code> executable and config through Preferences -> Tools -> Protocol Buffer Lint
     ]]></description>
+
+    <idea-version since-build="183"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>io.protostuff.protostuff-jetbrains-plugin</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <externalAnnotator language="PROTO" implementationClass="com.yoheimuta.intellij.plugin.protolint.ProtolintAnnotator" />
+        <projectService serviceImplementation="com.yoheimuta.intellij.plugin.protolint.ProjectService" />
+        <projectConfigurable groupId="tools" instance="com.yoheimuta.intellij.plugin.protolint.ProjectConfigurationPanel"/>
     </extensions>
 </idea-plugin>

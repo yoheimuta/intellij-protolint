@@ -7,6 +7,8 @@ import com.intellij.openapi.project.Project;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.intellij.psi.PsiFile;
 
+import org.apache.commons.lang.StringUtils;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,11 +36,15 @@ public class ProtolintExecutor {
 
         final GeneralCommandLine commandLine = new GeneralCommandLine();
         final Project project = psiFile.getProject();
+        final ProjectService state = ProjectService.getInstance(project);
 
-        commandLine.setExePath(getDefaultExe());
+        commandLine.setExePath(StringUtils.defaultIfEmpty(state.executable, getDefaultExe()));
         commandLine.setWorkDirectory(project.getBasePath());
         commandLine.withEnvironment(System.getenv());
         commandLine.addParameters("lint");
+        if (!state.config.isEmpty()) {
+            commandLine.addParameters("-config_dir_path=" + state.config);
+        }
         commandLine.addParameter(virtualFile.getPath());
 
         try {
