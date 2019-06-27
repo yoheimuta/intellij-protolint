@@ -14,8 +14,7 @@ Compatibility Matrix:
 
 ### Installation
 
-You can install the plugin manually by opening "Plugins" settings,
-"Marketplace" - search for "Protocol Buffer Linter".
+You can install the plugin by opening "Plugins" settings, "Marketplace" - search for "Protocol Buffer Linter".
 
 #### Dependencies
 
