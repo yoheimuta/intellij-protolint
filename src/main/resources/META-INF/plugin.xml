@@ -6,12 +6,23 @@
     <description><![CDATA[
       <a href="https://github.com/yoheimuta/protolint/">Protolint</a> plugin for all products based on IntelliJ Platform (IntelliJ IDEA, GoLand, RubyMine, WebStorm, PhpStorm, PyCharm, AppCode, etc.)<br><br>
 
-      Configure the path to the <code>protolint</code> executable and its config through Preferences -> Tools -> Protocol Buffer Linter
+      <img src="https://raw.githubusercontent.com/yoheimuta/intellij-protolint/master/doc/demo.gif" alt="demo" style="max-width:100%;">
+
+      <br/>
+      <br/>
+      The plugin does not require configuration by default, for the majority of projects it should work out of the box.
+      <br/>
+      It is assumed that <code>protolint</code> executable is installed and available in your PATH by default.
+
+      <br/>
+      <br/>
+      You can configure the path to the <code>protolint</code> executable and its config through Preferences -> Tools -> Protocol Buffer Linter
 
       <br/>
       <br/>
       <a href="https://github.com/yoheimuta/intellij-protolint">Documentation</a>
       | <a href="https://github.com/yoheimuta/intellij-protolint/issues">Issue tracker</a>
+      | <a href="https://github.com/yoheimuta/protolint/releases">Protolint releases</a>
     ]]></description>
 
     <idea-version since-build="183"/>
