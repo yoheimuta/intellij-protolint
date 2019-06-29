@@ -12,6 +12,21 @@ Compatibility Matrix:
 |-----------------|--------------------|
 | 0.1.0           | IDEA 2018.3        |
 
+### Example
+
+Using the following `.protolint.yaml` configuration file.
+
+```yaml
+lint:
+  rules:
+    no_default: true
+
+    add:
+      - MESSAGE_NAMES_UPPER_CAMEL_CASE
+      - SERVICE_NAMES_UPPER_CAMEL_CASE
+```
+
+![demo](doc/demo.gif)
 
 ### Installation
 
