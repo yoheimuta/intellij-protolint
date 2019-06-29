@@ -53,12 +53,22 @@ public class ProtolintAnnotator extends ExternalAnnotator<PsiFile, List<Protolin
         }
         warnings.forEach(warning -> {
             int line = warning.getLine()-1;
-            int lineEndOffset = document.getLineEndOffset(line);
+            int endOffset = document.getLineEndOffset(line);
             int startOffset = StringUtil.lineColToOffset(file.getText(), line, warning.getColumn());
-            TextRange range = new TextRange(startOffset, lineEndOffset);
+
+            // See https://github.com/Hannah-Sten/TeXiFy-IDEA/pull/844
+            if (!isProperRange(startOffset, endOffset)) {
+                LOGGER.info("Skip negative text range");
+                return;
+            }
+            TextRange range = new TextRange(startOffset, endOffset);
             holder.createWarningAnnotation(range, warning.getReason());
             LOGGER.info("Create an annotation");
         });
+    }
+
+    private boolean isProperRange(int startOffset, int endOffset) {
+        return startOffset <= endOffset && startOffset >= 0;
     }
 }
 
