@@ -15,7 +15,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class ProtolintAnnotator extends ExternalAnnotator<PsiFile, List<ProtolintWarning>> {
+public class ProtolintAnnotator extends ExternalAnnotator<Editor, List<ProtolintWarning>> {
     private static final Logger LOGGER = Logger.getInstance(ProtolintAnnotator.class);
 
     public ProtolintAnnotator() {
@@ -24,23 +24,16 @@ public class ProtolintAnnotator extends ExternalAnnotator<PsiFile, List<Protolin
 
     @Nullable
     @Override
-    public PsiFile collectInformation(@NotNull PsiFile file) {
+    public Editor collectInformation(@NotNull PsiFile file, @NotNull Editor editor, boolean hasErrors) {
         LOGGER.debug("Called collectInformation");
-        return file;
+        return editor;
     }
 
     @Nullable
     @Override
-    public PsiFile collectInformation(@NotNull PsiFile file, @NotNull Editor editor, boolean hasErrors) {
-        LOGGER.debug("Called collectInformation2");
-        return super.collectInformation(file, editor, hasErrors);
-    }
-
-    @Nullable
-    @Override
-    public List<ProtolintWarning> doAnnotate(PsiFile file) {
+    public List<ProtolintWarning> doAnnotate(Editor editor) {
         LOGGER.debug("Called doAnnotate");
-        return ProtolintExecutor.execute(file);
+        return ProtolintExecutor.execute(editor);
     }
 
     @Override
