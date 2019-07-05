@@ -25,6 +25,11 @@
       | <a href="https://github.com/yoheimuta/protolint/releases">Protolint releases</a>
     ]]></description>
 
+    <change-notes><![CDATA[
+      Version 0.1.2: Lint responsiveness and correctness are significantly improved.
+    ]]>
+    </change-notes>
+
     <idea-version since-build="183"/>
 
     <depends>com.intellij.modules.lang</depends>
