@@ -3,39 +3,55 @@ package com.yoheimuta.intellij.plugin.protolint;
 import com.intellij.execution.ExecutionException;
 import com.intellij.execution.configurations.GeneralCommandLine;
 import com.intellij.openapi.diagnostic.Logger;
+import com.intellij.openapi.editor.Document;
+import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.psi.PsiFile;
 
 import org.apache.commons.lang.StringUtils;
+import org.jetbrains.annotations.NotNull;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProtolintExecutor {
     private static final Logger LOGGER = Logger.getInstance(ProtolintExecutor.class.getPackage().getName());
 
-    static List<ProtolintWarning> execute(final PsiFile file) {
-        final Process process = createProcess(file);
-        if (process == null) {
-            return new ArrayList<>();
+    static List<ProtolintWarning> execute(@NotNull final Editor editor) {
+        Path tmp;
+        try {
+            tmp = Files.createTempFile(null, ".proto");
+        } catch (IOException ex) {
+            LOGGER.error("There was a problem while preparing a temp file.", ex);
+            throw new ProtolintPluginException(ex);
         }
-        return getOutput(process);
+
+        try {
+            final Process process = createProcess(editor, tmp);
+            if (process == null) {
+                return new ArrayList<>();
+            }
+            return getOutput(process);
+        } finally {
+            try {
+                Files.delete(tmp);
+            } catch (IOException ex) {
+                LOGGER.error("There was a problem while deleting a temp file.", ex);
+            }
+        }
     }
 
-    private static Process createProcess(final PsiFile psiFile) {
-        final VirtualFile virtualFile = psiFile.getVirtualFile();
-        if (virtualFile == null) {
-            LOGGER.info("The file only exists in memory. It will be checked after saved to disk.");
-            return null;
-        }
+    private static Process createProcess(final Editor editor, final Path tmp) {
+        // ref. https://intellij-support.jetbrains.com/hc/en-us/community/posts/360004284939-How-to-trigger-ExternalAnnotator-running-immediately-after-saving-the-code-change-
+        VirtualFile file = createSyncedFile(editor.getDocument(), tmp);
 
         final GeneralCommandLine commandLine = new GeneralCommandLine();
-        final Project project = psiFile.getProject();
+        final Project project = editor.getProject();
         final ProjectService state = ProjectService.getInstance(project);
 
         commandLine.setExePath(StringUtils.defaultIfEmpty(state.executable, getDefaultExe()));
@@ -45,7 +61,7 @@ public class ProtolintExecutor {
         if (!state.config.isEmpty()) {
             commandLine.addParameters("-config_dir_path=" + state.config);
         }
-        commandLine.addParameter(virtualFile.getPath());
+        commandLine.addParameter(file.getPath());
 
         try {
             return commandLine.createProcess();
@@ -107,5 +123,18 @@ public class ProtolintExecutor {
 
     private static String getDefaultExe() {
         return "protolint";
+    }
+
+
+    private static VirtualFile createSyncedFile(Document doc, Path tmp) {
+        try {
+            try(BufferedWriter out = Files.newBufferedWriter(tmp, StandardCharsets.UTF_8)) {
+                out.write(doc.getText());
+            }
+            return LocalFileSystem.getInstance().findFileByPath(tmp.toString());
+        } catch (IOException ex) {
+            LOGGER.error("There was a problem while preparing a temp file.", ex);
+            throw new ProtolintPluginException(ex);
+        }
     }
 }

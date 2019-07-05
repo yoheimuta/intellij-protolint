@@ -36,7 +36,6 @@ You can install the plugin by opening "Plugins" settings, "Marketplace" - search
 
 - [protolint](https://github.com/yoheimuta/protolint) must be installed.
 - [protobuf-jetbrains-plugin](https://github.com/protostuff/protobuf-jetbrains-plugin) must be installed.
-   - NB: If any warnings from protobuf-jetbrains-plugin exist in a target file, the plugin does not work.
 
 ### Configuration
 
