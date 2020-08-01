@@ -35,6 +35,7 @@
     ]]></description>
 
     <change-notes><![CDATA[
+      Version 1.0.0: Change its dependency relating to protobuf.
       Version 0.1.3: Add a note to README.
       Version 0.1.2: Lint responsiveness and correctness are significantly improved.
     ]]>
@@ -43,10 +44,10 @@
     <idea-version since-build="183"/>
 
     <depends>com.intellij.modules.lang</depends>
-    <depends>io.protostuff.protostuff-jetbrains-plugin</depends>
+    <depends>idea.plugin.protoeditor</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <externalAnnotator language="PROTO" implementationClass="com.yoheimuta.intellij.plugin.protolint.ProtolintAnnotator" />
+        <externalAnnotator language="protobuf" implementationClass="com.yoheimuta.intellij.plugin.protolint.ProtolintAnnotator" />
         <projectService serviceImplementation="com.yoheimuta.intellij.plugin.protolint.ProjectService" />
         <projectConfigurable groupId="tools" instance="com.yoheimuta.intellij.plugin.protolint.ProjectConfigurationPanel"/>
     </extensions>
