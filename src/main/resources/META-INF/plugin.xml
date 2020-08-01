@@ -20,13 +20,8 @@
 
       <br/>
       <br/>
-      NOTE: protobuf-jetbrains-plugin must be installed, however, this plugin is removed at the moment. You have to install the plugin from disk. Here are the steps.
-      <br/>
+      NOTE: <a href="https://plugins.jetbrains.com/plugin/14004-protocol-buffer-editor">protocol-buffer-editor</a> must be installed.
 
-      <ol>
-        <li>Download the zip from <a href="https://github.com/protostuff/protobuf-jetbrains-plugin/releases/tag/v0.13.0">its release page</a></li>
-        <li>Install from disk according to <a href=" https://www.jetbrains.com/help/idea/managing-plugins.html#install_plugin_from_disk">the instruction</a></li>
-      </ol>
       <br/>
       <br/>
       <a href="https://github.com/yoheimuta/intellij-protolint">Documentation</a>

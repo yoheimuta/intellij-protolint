@@ -3,13 +3,14 @@
 
 [Protocol Buffer Linter Plugin](https://plugins.jetbrains.com/plugin/12641-protocol-buffer-linter) for IntelliJ IDEA & other JetBrains products.
 
-The latest plugin release is compatible with IntelliJ IDEA 2018.3.
+The latest plugin release is compatible with IntelliJ IDEA 2020.1.
 Other JetBrains IDEs of the same or higher version should be supported as well.
 
 Compatibility Matrix:
 
 | Plugin Version  | IDE Version Range  |
 |-----------------|--------------------|
+| 1.0.0           | IDEA 2020.1        |
 | 0.1.0           | IDEA 2018.3        |
 
 ### Example
@@ -35,10 +36,7 @@ You can install the plugin by opening "Plugins" settings, "Marketplace" - search
 #### Dependencies
 
 - [protolint](https://github.com/yoheimuta/protolint) must be installed.
-- [protobuf-jetbrains-plugin](https://github.com/protostuff/protobuf-jetbrains-plugin) must be installed.
-   - Note: This plugin is removed at the moment #3, and you have to install the plugin from disk. Here are the steps.
-      - Download the zip from [its release page](https://github.com/protostuff/protobuf-jetbrains-plugin/releases/tag/v0.13.0)
-      - Follow the instruction: https://www.jetbrains.com/help/idea/managing-plugins.html#install_plugin_from_disk
+- [protocol-buffer-editor](https://plugins.jetbrains.com/plugin/14004-protocol-buffer-editor) must be installed.
 
 ### Configuration
 
