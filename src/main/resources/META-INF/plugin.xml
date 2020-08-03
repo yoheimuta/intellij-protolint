@@ -36,7 +36,7 @@
     ]]>
     </change-notes>
 
-    <idea-version since-build="183"/>
+    <idea-version since-build="193"/>
 
     <depends>com.intellij.modules.lang</depends>
     <depends>idea.plugin.protoeditor</depends>
