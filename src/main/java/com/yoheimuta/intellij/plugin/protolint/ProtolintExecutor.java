@@ -33,9 +33,6 @@ public class ProtolintExecutor {
 
         try {
             final Process process = createProcess(editor, tmp);
-            if (process == null) {
-                return new ArrayList<>();
-            }
             return getOutput(process);
         } finally {
             try {
@@ -55,7 +52,11 @@ public class ProtolintExecutor {
         final ProjectService state = ProjectService.getInstance(project);
 
         commandLine.setExePath(StringUtils.defaultIfEmpty(state.executable, getDefaultExe()));
-        commandLine.setWorkDirectory(project.getBasePath());
+        if (project != null) {
+            commandLine.setWorkDirectory(project.getBasePath());
+        } else {
+            LOGGER.warn("Skip commandLine.setWorkDirectory because project is null");
+        }
         commandLine.withEnvironment(System.getenv());
         commandLine.addParameters("lint");
         if (!state.config.isEmpty()) {
