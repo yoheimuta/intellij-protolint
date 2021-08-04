@@ -2,6 +2,7 @@ package com.yoheimuta.intellij.plugin.protolint;
 
 import com.intellij.lang.annotation.AnnotationHolder;
 import com.intellij.lang.annotation.ExternalAnnotator;
+import com.intellij.lang.annotation.HighlightSeverity;
 import com.intellij.openapi.diagnostic.Logger;
 import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
@@ -55,7 +56,9 @@ public class ProtolintAnnotator extends ExternalAnnotator<Editor, List<Protolint
                 return;
             }
             TextRange range = new TextRange(startOffset, endOffset);
-            holder.createWarningAnnotation(range, warning.getReason());
+            holder.newAnnotation(HighlightSeverity.WARNING, warning.getReason())
+                    .range(range)
+                    .create();
             LOGGER.info("Create an annotation");
         });
     }
