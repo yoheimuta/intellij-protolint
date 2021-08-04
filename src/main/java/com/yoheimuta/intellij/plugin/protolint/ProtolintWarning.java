@@ -20,7 +20,7 @@ public class ProtolintWarning {
     }
 
     public Integer getColumn() {
-        return column;
+        return column - 1;
     }
 
     public String getReason() {
