@@ -1,9 +1,9 @@
 package com.yoheimuta.intellij.plugin.protolint;
 
 public class ProtolintWarning {
-    private Integer line;
-    private Integer column;
-    private String reason;
+    private final Integer line;
+    private final Integer column;
+    private final String reason;
 
     public ProtolintWarning(
         Integer line,
@@ -20,7 +20,7 @@ public class ProtolintWarning {
     }
 
     public Integer getColumn() {
-        return column;
+        return column - 1;
     }
 
     public String getReason() {

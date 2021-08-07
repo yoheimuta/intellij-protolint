@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.intellij.plugin.protolint'
-version '1.0.0'
+version '1.0.1'
 
 sourceCompatibility = 1.8
 
@@ -18,7 +18,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.1'
-    setPlugins("idea.plugin.protoeditor:2.0")
+    version '2021.2'
+    setPlugins("idea.plugin.protoeditor:212.4746.57")
     intellij.updateSinceUntilBuild false
 }
